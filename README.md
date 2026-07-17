@@ -13,13 +13,13 @@ A relational database for a school system, built in **MySQL** as a team assignme
 
 | Member | Owns |
 |--------|------|
-| Liliose | `Students` table |
-| Fabrice | `Classroom` table |
-| Lana | `Faculty` table |
-| Landry | `Courses` table |
-| Kelvin | `Extra_Curricular_Activities` + junction tables (`Student_Courses`, `Student_Activities`) |
+| Liliose Gashugi | `Students` table |
+| Fabrice Ishimwe | `Classroom` table |
+| Keza Lysley | `Faculty` table |
+| Landry Rwema | `Courses` table |
+| Kelvin Nyagah | `Extra_Curricular_Activities` + junction tables (`Student_Courses`, `Student_Activities`) |
 
-
+Each member committed their own section of `alu_db.sql` directly, so individual contributions are visible in the commit history.
 
 ## Schema overview
 
@@ -61,4 +61,3 @@ All foreign keys reference valid primary keys, and the schema is in third normal
 - **Joins:** three multi-table `JOIN` queries that output full sentences, e.g. *"Kevin Niyonzima is enrolled in Introduction to Databases, taught by Dr. Amina Uwase, in room A101 (Innovation Hall)."*
 - **Aggregation:** a `COUNT()` + `GROUP BY` query showing how many students are enrolled in each course (using `LEFT JOIN` so empty courses still appear).
 - **Normalization:** a short written analysis included as a comment block at the end of the SQL file.
-
