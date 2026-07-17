@@ -212,6 +212,21 @@ FROM Extra_Curricular_Activities
 WHERE category = 'Sports';
 
 -- ------------------------------------------------------------
+-- Soumaya: Relationship integrity check — confirming no orphaned foreign keys
+SELECT s.student_id FROM Students s
+LEFT JOIN Classroom c ON s.classroom_id = c.classroom_id
+WHERE s.classroom_id IS NOT NULL AND c.classroom_id IS NULL;
+
+SELECT co.course_id FROM Courses co
+LEFT JOIN Faculty f ON co.faculty_id = f.faculty_id
+WHERE co.faculty_id IS NOT NULL AND f.faculty_id IS NULL;
+
+SELECT sc.student_id, sc.course_id FROM Student_Courses sc
+LEFT JOIN Students s ON sc.student_id = s.student_id
+LEFT JOIN Courses c ON sc.course_id = c.course_id
+WHERE s.student_id IS NULL OR c.course_id IS NULL;
+-- empty result sets = no orphans, integrity confirmed
+-- ------------------------------------------------------------
 -- 5. Group JOIN queries
 -- ------------------------------------------------------------
 
@@ -248,6 +263,13 @@ SELECT c.course_name, COUNT(sc.student_id) AS number_of_students
 FROM Courses c
 LEFT JOIN Student_Courses sc ON c.course_id = sc.course_id
 GROUP BY c.course_id, c.course_name
+ORDER BY number_of_students DESC;
+
+-- Soumaya: how many students participate in each activity
+SELECT a.activity_name, COUNT(sa.student_id) AS number_of_students
+FROM Extra_Curricular_Activities a
+LEFT JOIN Student_Activities sa ON a.activity_id = sa.activity_id
+GROUP BY a.activity_id, a.activity_name
 ORDER BY number_of_students DESC;
 
 -- ------------------------------------------------------------
